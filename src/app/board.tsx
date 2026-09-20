@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome6 } from "@expo/vector-icons";
 
 export default function BoardScreen() {
-    const snaps = ["Fernando", "Sophie", "Luca", "Emma"];
+  const snaps = ["Fernando", "Sophie", "Luca", "Emma"];
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -37,14 +37,19 @@ export default function BoardScreen() {
         <Text>For You</Text>
       </View>
       <View style={styles.snapsSection}>
-        <Text>Snaps</Text>
+        <Text style={styles.snapsTitle}>Snaps</Text>
         <ScrollView horizontal>
-            {snaps.map((nome)=>(<View style={styles.snapItem}>
-              <View style={styles.snapAvatar} ></View>
-            <Text>{nome}</Text>
-          </View>))}
-          
+          {snaps.map((nome) => (
+            <View key={nome} style={styles.snapItem}>
+              <View style={styles.snapAvatar}></View>
+              <Text>{nome}</Text>
+            </View>
+          ))}
         </ScrollView>
+      </View>
+
+      <View style={styles.spotlightSection}>
+        <Text style={styles.spotlightTitle}>SPOTLIGHT</Text>
       </View>
     </SafeAreaView>
   );
@@ -84,13 +89,17 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 
-snapItem:{ alignItems: 'center'},
+  snapItem: { alignItems: "center", marginRight: 16 },
 
-snapAvatar:{
-width: 64,
-height: 64,
-backgroundColor:Colors.light.backgroundElement,
+  snapAvatar: {
+    width: 64,
+    height: 64,
+    backgroundColor: Colors.light.backgroundElement,
+  },
 
-},
+  snapsTitle: { fontSize: 20, fontWeight: "700", marginBottom: 10 },
 
+  spotlightSection: {paddingHorizontal: 16,},
+
+  spotlightTitle:{fontSize: 12, fontWeight:'600', letterSpacing: 4, color: Colors.light.primary,},
 });
