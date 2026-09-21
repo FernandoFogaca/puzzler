@@ -1,10 +1,23 @@
-import { View, StyleSheet, Text, Pressable, ScrollView } from "react-native";
 import { Colors } from "@/constants/theme";
+import { FontAwesome6, Ionicons } from "@expo/vector-icons";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, FontAwesome6 } from "@expo/vector-icons";
 
 export default function BoardScreen() {
   const snaps = ["Fernando", "Sophie", "Luca", "Emma"];
+
+  const spotlight = {
+    title: "Featured Challenge",
+    type: "Speed Puzzle",
+    pieces: 500,
+  };
+  const posts = [
+    {
+      id: 1,
+      user: "Sophie",
+      text: "Just finished my first 1000-piece puzzle!",
+    },
+  ];
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -50,6 +63,19 @@ export default function BoardScreen() {
 
       <View style={styles.spotlightSection}>
         <Text style={styles.spotlightTitle}>SPOTLIGHT</Text>
+        <View style={styles.spotlightCard}>
+          <Text style={styles.spotlightCardTitle}>{spotlight.title}</Text>
+          <Text>
+            {spotlight.pieces} pieces • {spotlight.type}
+          </Text>
+        </View>
+      </View>
+      <View style= {styles.postsSection}>
+          {posts.map((post)=> (
+            <View key={post.id}></View>
+          ))}
+
+
       </View>
     </SafeAreaView>
   );
@@ -99,7 +125,23 @@ const styles = StyleSheet.create({
 
   snapsTitle: { fontSize: 20, fontWeight: "700", marginBottom: 10 },
 
-  spotlightSection: {paddingHorizontal: 16,},
+  spotlightSection: { paddingHorizontal: 16 },
 
-  spotlightTitle:{fontSize: 12, fontWeight:'600', letterSpacing: 4, color: Colors.light.primary,},
+  spotlightTitle: {
+    fontSize: 12,
+    fontWeight: "600",
+    letterSpacing: 4,
+    color: Colors.light.primary,
+  },
+
+  spotlightCard: {
+    height: 150,
+    borderRadius: 16,
+    backgroundColor: Colors.light.backgroundElement,
+    padding: 16,
+  },
+
+  spotlightCardTitle: { fontSize: 18, fontWeight: "700" },
+
+  postsSection:{},
 });
